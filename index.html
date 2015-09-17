@@ -136,19 +136,26 @@
 						type: "POST",
 						url: "https://mandrillapp.com/api/1.0/messages/send.json",
 						data: {
-							'key': 'YKoBw2_xhDVL74nzn9BvWQ',
-							'message': {
-								'from_email': 'YOUR_SENDER@example.com',
-								'to': [
+							"key": "YKoBw2_xhDVL74nzn9BvWQ",
+							"message": {
+								"html": "<p>Example HTML content</p>",
+								"text": "Example text content",
+								"subject": "example subject",
+								"from_email": "message.from_email@example.com",
+								"from_name": "Example Name",
+								"to": [
 									{
-									'email': email,
-									'name': 'dipl team',
-									'type': 'to'
+									"email": "contact@dipl.me",
+									"name": "dipl team",
+									"type": "to"
 									}
 								],
-								'subject': 'Contact from dipl website',
-								'html': content
-							}
+								"headers": {
+									"Reply-To": "message.reply@example.com"
+								}
+							},
+							"async": false,
+							"ip_pool": "Main Pool"
 						}
 					}).done(function(response) {
 						alert(response);
