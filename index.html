@@ -79,28 +79,26 @@
 					<p>If you are a school, let us show you how we can do to help you.
 					<br />If you are a professional or an investor, let us show you the benefits of our global solution.</p>
 
-					<form method="post" action="#">
-						<div class="row">
-							<div class="6u 12u(mobilep)">
-								<input type="text" name="name" placeholder="Name" />
-							</div>
-							<div class="6u 12u(mobilep)">
-								<input type="email" name="email" placeholder="Email" />
-							</div>
+					<div class="row">
+						<div class="6u 12u(mobilep)">
+							<input id="contactName" type="text" name="name" placeholder="Name" />
 						</div>
-						<div class="row">
-							<div class="12u">
-								<textarea name="message" placeholder="Message" rows="6"></textarea>
-							</div>
+						<div class="6u 12u(mobilep)">
+							<input id="contactAddress" type="email" name="email" placeholder="Email" />
 						</div>
-						<div class="row">
-							<div class="12u">
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</div>
+					</div>
+					<div class="row">
+						<div class="12u">
+							<textarea id="contactMessage" name="message" placeholder="Message" rows="6"></textarea>
 						</div>
-					</form>
+					</div>
+					<div class="row">
+						<div class="12u">
+							<ul class="actions">
+								<li><input id="sendMessage" type="submit" value="Send Message" /></li>
+							</ul>
+						</div>
+					</div>
 
 					<ul class="icons">
 						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -123,6 +121,38 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+
+			<script type="text/javascript">
+				$("#sendMessage").click(function () {
+					var contact = $("#contactName").val();
+					var email = $("#contactAddress").val();
+					var content = $("#contactMessage").val();
+					sendMail( contact, email, content )
+			    });
+
+
+				function sendMail( contact, email, content ){
+					$.ajax({
+						type: "POST",
+						url: "https://mandrillapp.com/api/1.0/messages/send.json",
+						data: {
+							'key': 'YKoBw2_xhDVL74nzn9BvWQ',
+							'message': {
+								'from_email': 'YOUR_SENDER@example.com',
+								'to': [
+									{
+									'email': email,
+									'name': 'dipl team',
+									'type': 'to'
+									}
+								],
+								'subject': 'Contact from dipl website',
+								'html': content
+							}
+						}
+					});
+				}
+			</script>
 
 	</body>
 </html>
