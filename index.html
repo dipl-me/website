@@ -129,7 +129,11 @@
 					var contact = $("#contactName").val();
 					var email = $("#contactAddress").val();
 					var content = $("#contactMessage").val();
-					sendMail( contact, email, content )
+					if ( contact == "" || email == "" || content == "" ){
+						alert("Please fill all the fields before submitting");
+					} else {
+						sendMail( contact, email, content );
+					}
 			    });
 
 
@@ -160,7 +164,7 @@
 							"ip_pool": "Main Pool"
 						}
 					}).done(function(response) {
-						alert("Message sent");
+						alert("Your message has been sent to the dipl team");
 						location.reload();
 					});
 				}
