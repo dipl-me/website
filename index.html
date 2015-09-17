@@ -138,11 +138,11 @@
 						data: {
 							"key": "YKoBw2_xhDVL74nzn9BvWQ",
 							"message": {
-								"html": "<p>Example HTML content</p>",
+								"html": content,
 								"text": "Example text content",
-								"subject": "example subject",
-								"from_email": "message.from_email@example.com",
-								"from_name": "Example Name",
+								"subject": contact+" would like to contact you",
+								"from_email": email,
+								"from_name": contact,
 								"to": [
 									{
 									"email": "contact@dipl.me",
@@ -151,7 +151,7 @@
 									}
 								],
 								"headers": {
-									"Reply-To": "message.reply@example.com"
+									"Reply-To": email
 								}
 							},
 							"async": false,
